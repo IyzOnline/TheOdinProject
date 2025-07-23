@@ -13,14 +13,14 @@
         let paraFontSize = 10;
         para.style.fontSize = `${paraFontSize}px`;
         
-        para.addEventListener("keypress", (event) => {
+        para.addEventListener("keypress", function changeSize(event) {
             if (event.keys === "ArrowUp") {
-                paraFontSize += (paraFontSize * 0.1);
+                paraFontSize > 15 ? para.textContent = "💥" : paraFontSize += (paraFontSize * 0.1);
             } else if (event.keys === "ArrowDown") {
-                paraFontSize -= (paraFontSize * 0.1);
+                paraFontSize < 5 ? window.alert("You cannot deflate the balloon further.") : paraFontSize -= (paraFontSize * 0.1);
             }
 
-            para.style.fontSize = `${paraFontSize}px`;
+            para.textContent === "💥" ? para.removeEventListener("keypress", changeSize) : para.style.fontSize = `${paraFontSize}px`;
         });
     </script>
 </body>
